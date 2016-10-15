@@ -44,3 +44,7 @@ group :development, :test do
   gem 'spring'
 end
 
+
+# Network GEMS
+gem "rest-client"
+
