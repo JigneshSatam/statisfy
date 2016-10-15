@@ -40,18 +40,18 @@ class Profile < ActiveRecord::Base
     #   answer_score = result['docSentiment']['score'].to_f * qstn.weight
     #   overall_score += answer_score
     # end
-# ans_arr = ['fabulous.','The best','Ok','It makes me feel really happy.','Good.','Best in industry!','Top.','They are good. But they are also good. I am good hence they are good. If I am bad then they are worst.']
-# ans_arr = ['Cool Workplace','Extraordinary','innovative','fresh and enthusiastic','it is next to no one','Work freedom with responsibilities','Overall development','Excellent and hardworking']
-overall_score = 0.0
-ans_arr = ['Fine','Normal','Normal','Not good everyday','Good','Fine','Fine','Fabulous']
-ans_arr.each do |answer_content|
-api_url = 'https://gateway-a.watsonplatform.net/calls/text/TextGetTextSentiment?outputMode=json&text='+answer_content+'&apikey=ef7c7ac59a4d1ea6609a6886d99212c7b101d5a3'
-result = RestClient.get(api_url)
-result = JSON.parse(result.body)
-answer_score = result['docSentiment']['score'].to_f
-puts answer_score
-overall_score = overall_score + answer_score
-end
-overall_score =  (overall_score / 8) * 40  + 47
+    # ans_arr = ['fabulous.','The best','Ok','It makes me feel really happy.','Good.','Best in industry!','Top.','They are good. But they are also good. I am good hence they are good. If I am bad then they are worst.']
+    # ans_arr = ['Cool Workplace','Extraordinary','innovative','fresh and enthusiastic','it is next to no one','Work freedom with responsibilities','Overall development','Excellent and hardworking']
+    overall_score = 0.0
+    ans_arr = ['Fine','Normal','Normal','Not good everyday','Good','Fine','Fine','Fabulous']
+    ans_arr.each do |answer_content|
+    api_url = 'https://gateway-a.watsonplatform.net/calls/text/TextGetTextSentiment?outputMode=json&text='+answer_content+'&apikey=ef7c7ac59a4d1ea6609a6886d99212c7b101d5a3'
+    result = RestClient.get(api_url)
+    result = JSON.parse(result.body)
+    answer_score = result['docSentiment']['score'].to_f
+    puts answer_score
+    overall_score = overall_score + answer_score
+    end
+    overall_score =  (overall_score / 8) * 40  + 47
   end
 end
