@@ -54,7 +54,7 @@ class Profile < ActiveRecord::Base
       answer_content = answer.content
       api_url = 'https://gateway-a.watsonplatform.net/calls/text/TextGetTextSentiment?outputMode=json&text='+answer_content+'&apikey=ef7c7ac59a4d1ea6609a6886d99212c7b101d5a3'
       result = RestClient.get(api_url)
-      answer_score = result['docSentiment']['score'].to_f * answer.question.weight
+      answer_score =  JSON.parse(result.body)['docSentiment']['score'].to_f * answer.question.weight
       overall_score += answer_score
     end
 
@@ -69,7 +69,7 @@ class Profile < ActiveRecord::Base
     # puts answer_score
     # overall_score = overall_score + answer_score
     # end
-    overall_score =  (overall_score / 8) * 40
+    overall_score =  ((1 + (overall_score / 8))/2)*40
   end
 
 
@@ -142,6 +142,6 @@ class Profile < ActiveRecord::Base
   end
 
   def fit_for_organization
-    salary_satisfaction(30) + nlp_score
+    salary_satisfaction(30) + nlp_score*0.7
   end
 end

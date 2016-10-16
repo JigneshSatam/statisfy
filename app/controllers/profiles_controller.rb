@@ -13,6 +13,6 @@ class ProfilesController < ApplicationController
   def show
     profile = Profile.find(params[:id])
     # profile = Profile.first
-    render json: ({profile_satisfaction: profile.job_satisfaction}.to_json)
+    render json: ({profile_satisfaction: profile.job_satisfaction, fit_for_organization: profile.fit_for_organization}.to_json)
   end
 end
