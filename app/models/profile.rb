@@ -52,7 +52,7 @@ class Profile < ActiveRecord::Base
     overall_score = 0.0
     profile.answers.includes(:question).each do |answer|
       answer_content = answer.content
-      api_url = 'https://gateway-a.watsonplatform.net/calls/text/TextGetTextSentiment?outputMode=json&text='+answer_content+'&apikey=ef7c7ac59a4d1ea6609a6886d99212c7b101d5a3'
+      api_url = 'https://gateway-a.watsonplatform.net/calls/text/TextGetTextSentiment?outputMode=json&text='+answer_content+'&apikey=dd021426e27baede322c407d96ddae678fb7e5ba'
       result = RestClient.get(api_url)
       answer_score =  JSON.parse(result.body)['docSentiment']['score'].to_f * answer.question.weight
       overall_score += answer_score
