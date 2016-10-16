@@ -142,6 +142,6 @@ class Profile < ActiveRecord::Base
   end
 
   def fit_for_organization
-    salary_satisfaction(30) + nlp_score*0.7
+    salary_satisfaction(40) + nlp_score*0.6
   end
 end
