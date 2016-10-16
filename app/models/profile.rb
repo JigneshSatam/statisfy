@@ -69,7 +69,7 @@ class Profile < ActiveRecord::Base
     puts answer_score
     overall_score = overall_score + answer_score
     end
-    overall_score =  (overall_score / 8) * 40  + 47
+    overall_score =  (overall_score / 8) * 40
   end
 
 
