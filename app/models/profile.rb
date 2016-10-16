@@ -50,11 +50,11 @@ class Profile < ActiveRecord::Base
     require 'rest-client'
     profile = self
     overall_score = 0.0
-    profile.questions.each do |qstn|
-      answer_content = qstn.answer.content
+    profile.answers.each do |answer|
+      answer_content = answer.content
       api_url = 'https://gateway-a.watsonplatform.net/calls/text/TextGetTextSentiment?outputMode=json&text='+answer_content+'&apikey=ef7c7ac59a4d1ea6609a6886d99212c7b101d5a3'
       result = RestClient.get(api_url)
-      answer_score = result['docSentiment']['score'].to_f * qstn.weight
+      answer_score = result['docSentiment']['score'].to_f * answer.question.weight
       overall_score += answer_score
     end
 
