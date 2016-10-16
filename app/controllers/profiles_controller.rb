@@ -8,8 +8,8 @@ class ProfilesController < ApplicationController
       profiles = Profile.all
     end
     render json: ({profiles: profiles}.to_json)
-    # resposnd_to do |format|
-    #   format.json {profiles: profiles}
-    # end
+  end
+
+  def show
   end
 end

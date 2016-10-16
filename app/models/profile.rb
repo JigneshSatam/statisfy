@@ -1,4 +1,5 @@
 class Profile < ActiveRecord::Base
+  has_many :answers
   def salary_satisfaction
     x = self.salary
     y = median_of_salary(self.organization)
@@ -53,5 +54,11 @@ class Profile < ActiveRecord::Base
     overall_score = overall_score + answer_score
     end
     overall_score =  (overall_score / 8) * 40  + 47
+  end
+
+
+  def average_stay_satisfaction
+    avg_stay_score = self.average_stay.to_f*5/self.experience.to_f
+    return avg_stay_score.nan? ? 0 : avg_stay_score
   end
 end
